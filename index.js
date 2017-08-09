@@ -10,9 +10,7 @@ module.exports = fs4;
 
 function fs4(curpath = "./", exclude = []){
     var absPath = path.resolve(curpath);
-    console.log(11)
     var result = loop(absPath, exclude);
-    console.log(result)
     return {
         toJsonFile(target = "files.json", filter = null, indent = 0){
             if (!/\.json/.test(target)) {
@@ -23,7 +21,6 @@ function fs4(curpath = "./", exclude = []){
             fs.writeFileSync(target, str);
         }
     }
-
 }
 
 function loop(curPath, exclude = []) {
