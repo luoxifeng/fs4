@@ -13,22 +13,30 @@ function fs4(curpath = "./", exclude = []){
     var absPath = path.resolve(curpath);
     var result = loop(absPath, exclude);
 
-    return { toJsonFile , json}
-
-    function toJsonFile(target = "files.json", filter = null, indent = 0){
-        if (!/\.json/.test(target)) {
-            target += ".json" 
-        }
-        target = path.resolve(target)
-        var str = JSON.stringify(result, filter, indent);
-        fs.writeFileSync(target, str);
-        return this;
+    return { 
+        toJsonFile: fromTo(result) ,
+        json
     }
+
+    function fromTo(result){
+        return function (target = "files.json", filter = null, indent = 0){
+            if (!/\.json/.test(target)) {
+                target += ".json" 
+            }
+            target = path.resolve(target)
+            var str = JSON.stringify(result, filter, indent);
+            fs.writeFileSync(target, str);
+            return this;
+        }
+    }
+    
 
     function json(filter = null){
         var str = JSON.stringify(result, filter);
         var res = JSON.parse(str)
-        res.__proto__ = Object.create({toFile: toJsonFile})
+        res.__proto__ = Object.create({
+            toFile: fromTo(res)
+        })
         return res;
     }
 
