@@ -13,10 +13,19 @@ files path to map
 * 3.使用node执行上一步写好的文件，生成一个文件目录结构文件，大功告成
 
 tips:fs4()方法传入你想读取的文件目录,toJsonFile()方法里传入要把生成的文件放在哪里(相对路径)，如果不传任何参数，默认命名file.json
-
+### 基本用法
 ```javascript
 var fs4 = require('yourpath');
 fs4("./").toJsonFile("file.json");
 ```
 
-## 效果（售后截图展示）
+or
+
+```javascript
+var fs4 = require('yourpath');
+var obj = fs4("./").json();// return a object
+obj.toFile("file.json");
+```
+
+
+## 效果
