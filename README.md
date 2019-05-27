@@ -31,7 +31,7 @@ obj.toFile("file.json");
 * 过滤
 
 ```javascript
-var fs4 = require('yourpath', ["aa.js", "bb.txt"]);//exclude
+var fs4 = require('yourpath');//exclude
 function replacer(key, value) {
   // Filtering out properties
   if (typeof value === 'string') {
@@ -39,7 +39,7 @@ function replacer(key, value) {
   }
   return value;
 }
-var obj = fs4("./").toJsonFile("file.json", replacer, 4);// use as JSON.stringify
+var obj = fs4("./", ["aa.js", "bb.txt"]).toJsonFile("file.json", replacer, 4);// use as JSON.stringify
 ```
 or
 ```javascript
